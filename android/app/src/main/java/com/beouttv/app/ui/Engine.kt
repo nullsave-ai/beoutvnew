@@ -224,8 +224,10 @@ class PlaybackEngine(context: Context, private val scope: CoroutineScope) {
         player.seekTo((player.currentPosition + ms).coerceIn(0, if (d > 0) d else Long.MAX_VALUE))
     }
 
+    @JvmName("adjustVolume")
     fun setVolume(v: Float) { volume = v.coerceIn(0f, 1f); player.volume = volume }
 
+    @JvmName("adjustSpeed")
     fun setSpeed(s: Float) { speed = s; applySpeed() }
 
     /** تسريع مؤقت (ضغط مطوّل) ثم العودة للسرعة المختارة. */
