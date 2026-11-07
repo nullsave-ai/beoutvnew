@@ -1,0 +1,111 @@
+BEOUT TV
+├── android/
+│   ├── app/
+│   │   ├── src/
+│   │   │   └── main/
+│   │   │       ├── java/
+│   │   │       │   └── com/
+│   │   │       │       └── beouttv/
+│   │   │       │           └── app/
+│   │   │       │               ├── core/
+│   │   │       │               │   ├── Startup.kt
+│   │   │       │               │   └── UiState.kt
+│   │   │       │               ├── data/
+│   │   │       │               │   ├── Api.kt
+│   │   │       │               │   ├── ImageLoader.kt
+│   │   │       │               │   ├── Models.kt
+│   │   │       │               │   ├── Prefs.kt
+│   │   │       │               │   └── Repository.kt
+│   │   │       │               ├── notify/
+│   │   │       │               │   └── Reminders.kt
+│   │   │       │               ├── ui/
+│   │   │       │               │   ├── Adaptive.kt
+│   │   │       │               │   ├── Chrome.kt
+│   │   │       │               │   ├── Components.kt
+│   │   │       │               │   ├── DetailScreen.kt
+│   │   │       │               │   ├── Engine.kt
+│   │   │       │               │   ├── HomeScreen.kt
+│   │   │       │               │   ├── Icons.kt
+│   │   │       │               │   ├── ListScreens.kt
+│   │   │       │               │   ├── Live.kt
+│   │   │       │               │   ├── LivePanes.kt
+│   │   │       │               │   ├── LiveScreen.kt
+│   │   │       │               │   ├── Motion.kt
+│   │   │       │               │   ├── Nav.kt
+│   │   │       │               │   ├── PlayerScreen.kt
+│   │   │       │               │   ├── PlayerUi.kt
+│   │   │       │               │   ├── Root.kt
+│   │   │       │               │   ├── SearchScreen.kt
+│   │   │       │               │   ├── SettingsScreen.kt
+│   │   │       │               │   ├── Strings.kt
+│   │   │       │               │   ├── SystemBars.kt
+│   │   │       │               │   ├── Theme.kt
+│   │   │       │               │   ├── UiMode.kt
+│   │   │       │               │   └── ViewModels.kt
+│   │   │       │               ├── App.kt
+│   │   │       │               └── MainActivity.kt
+│   │   │       ├── res/
+│   │   │       │   ├── mipmap-hdpi/
+│   │   │       │   │   └── ic_launcher.png
+│   │   │       │   ├── mipmap-mdpi/
+│   │   │       │   │   └── ic_launcher.png
+│   │   │       │   ├── mipmap-xhdpi/
+│   │   │       │   │   └── ic_launcher.png
+│   │   │       │   ├── mipmap-xxhdpi/
+│   │   │       │   │   └── ic_launcher.png
+│   │   │       │   └── mipmap-xxxhdpi/
+│   │   │       │       └── ic_launcher.png
+│   │   │       └── AndroidManifest.xml
+│   │   ├── build.gradle.kts
+│   │   └── proguard-rules.pro
+│   ├── gradle/
+│   │   └── wrapper/
+│   │       ├── gradle-wrapper.jar
+│   │       └── gradle-wrapper.properties
+│   ├── build.gradle.kts
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   └── settings.gradle.kts
+├── backend/
+│   ├── migrations/
+│   │   ├── 0001_init.sql
+│   │   ├── 0002_home_cleanup.sql
+│   │   └── 0003_home_live.sql
+│   ├── src/
+│   │   ├── admin.rs
+│   │   ├── error.rs
+│   │   ├── main.rs
+│   │   ├── mw.rs
+│   │   └── public.rs
+│   ├── .env.example
+│   ├── Cargo.lock
+│   └── Cargo.toml
+├── dashboard/
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── Ads.tsx
+│   │   │   ├── Categories.tsx
+│   │   │   ├── Config.tsx
+│   │   │   ├── HomeLayout.tsx
+│   │   │   ├── Items.tsx
+│   │   │   ├── Notifications.tsx
+│   │   │   ├── Stats.tsx
+│   │   │   └── Users.tsx
+│   │   ├── App.tsx
+│   │   ├── api.ts
+│   │   ├── main.tsx
+│   │   ├── styles.css
+│   │   └── vite-env.d.ts
+│   ├── .env.example
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── .gitignore
+├── CHANGES.md
+├── README.md
+├── REFERENCE.md
+├── TREE.txt
+└── docker-compose.yml

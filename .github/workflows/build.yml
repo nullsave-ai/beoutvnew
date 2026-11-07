@@ -1,0 +1,59 @@
+name: Build BeoutTV APK
+
+on:
+  push:
+    branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build APK
+        working-directory: android
+        run: |
+          chmod +x ./gradlew || true
+          ./gradlew assembleRelease --stacktrace || ./gradlew assembleDebug --stacktrace
+          
+          mkdir -p ../dist
+          find app/build/outputs/apk/ -name "*.apk" -exec cp {} ../dist/ \;
+          ls -lh ../dist/
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: BeoutTV_apk
+          path: dist/*.apk
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        with:
+          tag_name: v1.2.${{ github.run_number }}
+          name: "BeoutTV Universal v1.2.${{ github.run_number }} (Release)"
+          body: |
+            ### 🚀 BeoutTV v1.2.0 APK Release
+            * Direct streaming & Media3 player
+            * Compose modern UI
+          files: dist/*.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

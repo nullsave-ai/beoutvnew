@@ -1,0 +1,8 @@
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+backend/target/
+backend/.env
+dashboard/node_modules/
+dashboard/dist/

@@ -1,0 +1,114 @@
+package com.beouttv.app.data
+
+import androidx.compose.runtime.Immutable
+import kotlinx.serialization.Serializable
+
+/** عنصر محتوى موحد: movie | series | channel | episode */
+@Immutable
+@Serializable
+data class Item(
+    val id: String,
+    val kind: String,
+    val title: String,
+    val poster: String? = null,
+    val backdrop: String? = null,
+    val logo: String? = null,
+    val year: Int? = null,
+    val description: String? = null,
+    val durationMin: Int? = null,
+    val quality: String? = null,
+    val category: String? = null,
+    val live: Boolean = false,
+    val online: Boolean = true,
+    val parentId: String? = null,
+) {
+    val isChannel get() = kind == "channel"
+    val isSeries get() = kind == "series"
+}
+
+@Immutable
+@Serializable
+data class Section(
+    val id: String,
+    /** hero | row | channels | continue | categories | suggest */
+    val type: String,
+    val title: String = "",
+    val items: List<Item> = emptyList(),
+)
+
+@Immutable
+@Serializable
+data class HomeResponse(val sections: List<Section> = emptyList())
+
+@Immutable
+@Serializable
+data class Category(val id: String, val name: String)
+
+@Immutable
+@Serializable
+data class Page(val items: List<Item> = emptyList(), val next: String? = null)
+
+@Immutable
+@Serializable
+data class Episode(
+    val id: String,
+    val number: Int,
+    val title: String = "",
+    val durationMin: Int? = null,
+    val poster: String? = null,
+)
+
+@Immutable
+@Serializable
+data class Season(
+    val id: String,
+    val number: Int,
+    val title: String = "",
+    val episodes: List<Episode> = emptyList(),
+)
+
+@Immutable
+@Serializable
+data class Detail(
+    val item: Item,
+    val seasons: List<Season> = emptyList(),
+    val related: List<Item> = emptyList(),
+)
+
+@Immutable
+@Serializable
+data class PlayInfo(val url: String, val live: Boolean = false)
+
+@Immutable
+@Serializable
+data class AppConfig(
+    val minVersion: Int = 0,
+    val maxReconnect: Int = 6,
+    val maintenance: String? = null,
+)
+
+@Immutable
+@Serializable
+data class HistoryEntry(
+    val key: String,
+    val item: Item,
+    val episodeId: String? = null,
+    val label: String? = null,
+    val positionMs: Long = 0,
+    val durationMs: Long = 0,
+    val at: Long = 0,
+)
+
+@Immutable
+data class Settings(
+    val theme: String = "dark",      // light | dark | blue
+    val maxHeight: Int = 0,          // 0 = تلقائي
+    val resume: Boolean = true,
+    val notifications: Boolean = true,
+    val keepScreenOn: Boolean = true,
+    val uiMode: String = "auto",     // auto | phone | tv
+    val videoFit: String = "fit",    // auto | fit | fill | zoom | stretch
+    val longPressBoost: Boolean = true,
+    val autoPlay: Boolean = true,        // تشغيل آخر قناة تلقائياً عند فتح التطبيق
+    val autoFullscreen: Boolean = true,  // ملء الشاشة تلقائياً عند تدوير الهاتف أفقياً
+)
