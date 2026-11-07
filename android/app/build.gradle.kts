@@ -13,8 +13,8 @@ android {
         applicationId = "com.beouttv.app"
         minSdk = 24
         targetSdk = 35
-        versionCode = 3
-        versionName = "1.2.0"
+        versionCode = 4
+        versionName = "1.2.1"
         buildConfigField("String", "API_BASE", "\"${providers.gradleProperty("apiBase").get()}\"")
         // الاحتفاظ باللغة العربية والإنجليزية فقط (يقلل موارد المكتبات)
         resourceConfigurations += listOf("ar", "en")

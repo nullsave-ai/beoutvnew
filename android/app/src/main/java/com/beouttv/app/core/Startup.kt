@@ -37,8 +37,8 @@ fun deriveStartup(
             if (online) Startup.Ready else Startup.OfflineReady
         // خادم بلا أقسام: واجهة جاهزة بحالة فارغة مصممة (ليست خطأ)
         UiState.Empty -> if (online) Startup.Ready else Startup.OfflineReady
-        is UiState.Error -> Startup.Error(offline = !online)
-        UiState.Offline -> Startup.Error(offline = true)
+        is UiState.Error -> if (online) Startup.Ready else Startup.OfflineReady
+        UiState.Offline -> Startup.OfflineReady
         UiState.Loading -> Startup.Refreshing
         UiState.Initial ->
             if (config is UiState.Initial || config is UiState.Loading) Startup.LoadingConfig else Startup.LoadingCache
