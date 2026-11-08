@@ -99,6 +99,67 @@ fun colorsFor(theme: String) = when (theme) {
     else -> DarkColors
 }
 
+fun withAccent(colors: BeoutColors, accent: String): BeoutColors {
+    val (a, a2, aDeep) = when (accent) {
+        "blue" -> Triple(Color(0xFF2563EB), Color(0xFF60A5FA), Color(0xFF1D4ED8))
+        "violet" -> Triple(Color(0xFF7C3AED), Color(0xFFA78BFA), Color(0xFF5B21B6))
+        "teal" -> Triple(Color(0xFF0D9488), Color(0xFF2DD4BF), Color(0xFF115E59))
+        "rose" -> Triple(Color(0xFFE11D48), Color(0xFFFB7185), Color(0xFFBE123C))
+        "amber" -> Triple(Color(0xFFD97706), Color(0xFFFBBF24), Color(0xFFB45309))
+        "green" -> Triple(Color(0xFF16A34A), Color(0xFF4ADE80), Color(0xFF15803D))
+        else -> return colors
+    }
+    return BeoutColors(
+        bgTop = colors.bgTop,
+        bgBottom = colors.bgBottom,
+        glassHi = colors.glassHi,
+        glassLo = colors.glassLo,
+        edgeHi = colors.edgeHi,
+        edgeLo = colors.edgeLo,
+        dense = colors.dense,
+        text = colors.text,
+        textDim = colors.textDim,
+        accent = a,
+        accent2 = a2,
+        accentDeep = aDeep,
+        danger = colors.danger,
+        dark = colors.dark,
+    )
+}
+
+@Immutable
+data class Look(
+    val radius: Float = 1.0f,
+    val glass: Float = 1.0f,
+    val icon: String = "duo",
+    val poster: Float = 1.0f,
+)
+
+val LocalLook = staticCompositionLocalOf { Look() }
+
+fun lookOf(settings: com.beouttv.app.data.Settings): Look {
+    val r = when (settings.radius) {
+        "s" -> 0.75f
+        "l" -> 1.35f
+        else -> 1.0f
+    }
+    val g = when (settings.glass) {
+        "s" -> 0.7f
+        "l" -> 1.3f
+        else -> 1.0f
+    }
+    val p = when (settings.posterSize) {
+        "s" -> 0.88f
+        "l" -> 1.15f
+        else -> 1.0f
+    }
+    val ic = when (settings.iconStyle) {
+        "line", "solid" -> settings.iconStyle
+        else -> "duo"
+    }
+    return Look(radius = r, glass = g, icon = ic, poster = p)
+}
+
 val LocalColors = staticCompositionLocalOf { DarkColors }
 
 object T {

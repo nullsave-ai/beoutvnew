@@ -75,7 +75,7 @@ private fun buildHome(data: HomeResponse, hist: List<HistoryEntry>, kind: String
         if (items.isEmpty() || !seenIds.add(s.id) || !seenSets.add(items.map { it.id })) continue
         rows += s.copy(items = items)
     }
-    val cont = inProgress(hist).filter(::ok)
+    val cont = inProgress(hist).filter { ok(it.item) }
     return HomeModel(hero, cont, rows)
 }
 
