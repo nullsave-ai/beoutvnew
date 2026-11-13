@@ -27,8 +27,10 @@ import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.graphics.drawscope.translate
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
@@ -240,8 +242,8 @@ fun Modifier.opticalSurface(shape: Shape, role: Int, tierCap: Int = 3): Modifier
     }
 }
 
-private fun androidx.compose.ui.graphics.drawscope.DrawScope.translateStroke(path: Path, color: Color, dx: Float) {
-    androidx.compose.ui.graphics.drawscope.translate(dx, 0f) { drawPath(path, color, style = Stroke(1.2.dp.toPx())) }
+private fun DrawScope.translateStroke(path: Path, color: Color, dx: Float) {
+    translate(dx, 0f) { drawPath(path, color, style = Stroke(1.2.dp.toPx())) }
 }
 
 // ===================== الخلفيات =====================
